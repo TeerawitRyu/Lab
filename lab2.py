@@ -3,7 +3,7 @@ surnamelist = []
 userlist = []
 pwlist = []
 idlist = []
-# test changed
+
 print("Welcome Employee System Program".center(80, "="))
 print("1 Register Employee")
 print("2 Delete Employee")
