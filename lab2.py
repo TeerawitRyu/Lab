@@ -15,11 +15,10 @@ while menu != 4:
         print("="*80)
         print("REGISTER EMPLOYEE".center(80))
         print("="*80)
-        first_name, last_name = input("Enter name Surname : ").split()
-        first_name,last_name = first_name.lower(), last_name.lower()
+        fullname = input("Enter firstname and lastname : ").split(' ')
+        first_name,last_name = fullname[0].lower(), fullname[1].lower()
         username = first_name + "." + last_name[0]
-        num_first_last = len(first_name)+len(last_name)+1
-        pwd = first_name[1]+first_name[3].upper()+first_name[2].upper()+str(num_first_last)+first_name[4]
+        pwd = first_name[1]+first_name[3].upper()+first_name[2].upper()+str(len(fullname))+first_name[4]
         while True:
             id_card = input("Enter ID card [13 digits]: ")
             if(id_card.isnumeric() and len(id_card) == 13):
@@ -37,13 +36,19 @@ while menu != 4:
         print("DELETE EMPLOYEE".center(80))
         print("="*80)
         while True:
-            delete_name = str(input("Enter name employee to delete : "))
-            if delete_name in namelist :
-              namelist.clear(delete_name)
-              print("Delete Completed")
-              break;
-            else :
-              print("Invalid name !!")
+            delete_name = input("Enter name employee to delete : ").lower()
+            try:
+                index = namelist.index(delete_name)
+                del namelist[index]
+                del surnamelist[index]
+                del userlist[index]
+                del pwlist[index]
+                del idlist[index]
+                # namelist.remove(delete_name) #ต้องการลบแค่ตัวเดียว
+                print("Delete Completed")
+                break
+            except:
+                print("Invalid name !!")
     elif menu == 3 :
         print("="*80)
         print("SHOW DATA EMPLOYEE".center(80))
